@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     {
         Move();
     }
-    
+
     private void Move()
     {
         if (controller.isGrounded)
@@ -46,10 +46,31 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        //Ataque
+        if (Input.GetKey(KeyCode.Q))
+        {
+            anim.SetInteger("transition", 2);
+        }
+        //Defende
+        if (Input.GetKey(KeyCode.E))
+        {
+            anim.SetInteger("transition", 3);
+        }
+        //Anda para Trás
+        if (Input.GetKey(KeyCode.S))
+        {
+            anim.SetInteger("transition", 4);
+        }
+        //Pulo
+        if (Input.GetKey(KeyCode.Space))
+        {
+            anim.SetInteger("transition", 5);
+        }
+
+
+
         movRot += Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
         transform.eulerAngles = new Vector3(0, movRot, 0);
-
-
         moveDirection.y -= gravity * Time.deltaTime;
         moveDirection = transform.TransformDirection(moveDirection);
         controller.Move(moveDirection * Time.deltaTime);
