@@ -11,9 +11,11 @@ public class PlayerController : MonoBehaviour
     private float gravity;
     [SerializeField]
     private float rotSpeed;
+    [SerializeField]
+    private float slerp;
 
 
-    private CharacterController controller;
+    private CharacterController cc;
     private Animator anim;
 
     private float movRot;
@@ -21,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        controller = GetComponent<CharacterController>();
+        cc = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
     }
 
@@ -32,48 +34,64 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        if (controller.isGrounded)
-        {
-            if (Input.GetKey(KeyCode.W))
-            {
-                moveDirection = Vector3.forward * walkingSpeed;
-                anim.SetInteger("transition", 1);
-            }
-            else //if(Input.GetKeyUp(KeyCode.W))
-            {
-                moveDirection = Vector3.zero;
-                anim.SetInteger("transition", 0);
-            }
-        }
+        moveDirection.Set(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        cc.Move(moveDirection * walkingSpeed * Time.deltaTime);
+        cc.Move(Vector3.down * Time.deltaTime);
 
-        //Ataque
-        if (Input.GetKey(KeyCode.Q))
+
+        if (moveDirection != Vector3.zero)
         {
-            anim.SetInteger("transition", 2);
+            anim.SetInteger("transition", 1);
+            transform.forward = Vector3.Slerp(transform.forward, moveDirection, Time.deltaTime * slerp);
         }
-        //Defende
-        if (Input.GetKey(KeyCode.E))
+        else
         {
-            anim.SetInteger("transition", 3);
-        }
-        //Anda para Trás
-        if (Input.GetKey(KeyCode.S))
-        {
-            anim.SetInteger("transition", 4);
-        }
-        //Pulo
-        if (Input.GetKey(KeyCode.Space))
-        {
-            anim.SetInteger("transition", 5);
+            anim.SetInteger("transition", 0);
         }
 
 
+        //if (cc.isGrounded)
+        //{
+        //    if (Input.GetKey(KeyCode.W))
+        //    {
+        //        moveDirection = Vector3.forward * walkingSpeed;
+        //        anim.SetInteger("transition", 1);
+        //    }
+        //    else //if(Input.GetKeyUp(KeyCode.W))
+        //    {
+        //        moveDirection = Vector3.zero;
+        //        anim.SetInteger("transition", 0);
+        //    }
+        //}
 
-        movRot += Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
-        transform.eulerAngles = new Vector3(0, movRot, 0);
-        moveDirection.y -= gravity * Time.deltaTime;
-        moveDirection = transform.TransformDirection(moveDirection);
-        controller.Move(moveDirection * Time.deltaTime);
+        ////Ataque
+        //if (Input.GetKey(KeyCode.Q))
+        //{
+        //    anim.SetInteger("transition", 2);
+        //}
+        ////Defende
+        //if (Input.GetKey(KeyCode.E))
+        //{
+        //    anim.SetInteger("transition", 3);
+        //}
+        ////Anda para Trás
+        //if (Input.GetKey(KeyCode.S))
+        //{
+        //    anim.SetInteger("transition", 4);
+        //}
+        ////Pulo
+        //if (Input.GetKey(KeyCode.Space))
+        //{
+        //    anim.SetInteger("transition", 5);
+        //}
+
+
+
+        //movRot += Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
+        //transform.eulerAngles = new Vector3(0, movRot, 0);
+        //moveDirection.y -= gravity * Time.deltaTime;
+        //moveDirection = transform.TransformDirection(moveDirection);
+        //cc.Move(moveDirection * Time.deltaTime);
     }
 
 
