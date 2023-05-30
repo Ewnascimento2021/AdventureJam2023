@@ -1642,11 +1642,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3179825549774092866, guid: 18cc34376a618dc4b8a5db4d38580f96, type: 3}
       propertyPath: rotateSpeed
-      value: 0.5
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 3179825549774092866, guid: 18cc34376a618dc4b8a5db4d38580f96, type: 3}
       propertyPath: sensitivity
-      value: 5
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18cc34376a618dc4b8a5db4d38580f96, type: 3}
