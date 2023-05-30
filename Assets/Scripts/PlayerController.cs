@@ -55,10 +55,19 @@ public class PlayerController : MonoBehaviour
         turn.x += Input.GetAxis("Mouse X") * sensitivity;
         turn.y += Input.GetAxis("Mouse Y") * sensitivity;
         cc.transform.localRotation = Quaternion.Euler(0, turn.x, 0);
-       // transform.localRotation = Quaternion.Euler(-turn.x, 0, 0);
+        // transform.localRotation = Quaternion.Euler(-turn.x, 0, 0);
 
         deltaMove = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")) * rotateSpeed * Time.deltaTime;
         cc.transform.Translate(deltaMove);
+
+        //if (turn.x > 0)
+        //{
+        //    anim.SetBool("RightSide", true);
+        //}
+        //else if (turn.x < 0)
+        //{
+        //    anim.SetBool("LeftSide", true);
+        //}
     }
     private void handleInput()
     {
@@ -77,21 +86,32 @@ public class PlayerController : MonoBehaviour
                 {
                     moveDirection = Vector3.forward * walkingSpeed;
                     anim.SetBool("Walk", true);
+                    anim.SetBool("RightSide", false);
+                    anim.SetBool("LeftSide", false);
+                    anim.SetBool("BackSide", false);
                 }
                 else if (Input.GetKey(KeyCode.S))
                 {
                     moveDirection = Vector3.forward * walkingSpeed * -1;
                     anim.SetBool("Walk", false);
+                    anim.SetBool("RightSide", false);
+                    anim.SetBool("LeftSide", false);
                     anim.SetBool("BackSide", true);
                 }
                 else if (Input.GetKey(KeyCode.D))
                 {
                     moveDirection = Vector3.right * walkingSpeed;
+                    anim.SetBool("Walk", false);
+                    anim.SetBool("BackSide", false);
+                    anim.SetBool("LeftSide", false);
                     anim.SetBool("RightSide", true);
                 }
                 else if (Input.GetKey(KeyCode.A))
                 {
                     moveDirection = Vector3.right * walkingSpeed * -1;
+                    anim.SetBool("Walk", false);
+                    anim.SetBool("BackSide", false);
+                    anim.SetBool("RightSide", false);
                     anim.SetBool("LeftSide", true);
                 }
                 else
