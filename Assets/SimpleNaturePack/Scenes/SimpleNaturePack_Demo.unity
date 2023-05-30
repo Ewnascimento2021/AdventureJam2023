@@ -1632,9 +1632,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 668973418570169329, guid: 18cc34376a618dc4b8a5db4d38580f96, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 984163436944703974, guid: 18cc34376a618dc4b8a5db4d38580f96, type: 3}
       propertyPath: m_Name
       value: FemaleCharacterPBR
+      objectReference: {fileID: 0}
+    - target: {fileID: 3179825549774092866, guid: 18cc34376a618dc4b8a5db4d38580f96, type: 3}
+      propertyPath: rotateSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3179825549774092866, guid: 18cc34376a618dc4b8a5db4d38580f96, type: 3}
+      propertyPath: sensitivity
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18cc34376a618dc4b8a5db4d38580f96, type: 3}

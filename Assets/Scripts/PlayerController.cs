@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,7 +14,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float rotSpeed;
     [SerializeField]
-    private float slerp;
+    private Vector2 turn;
+    [SerializeField]
+    private float sensitivity;
+    [SerializeField]
+    private Vector3 deltaMove;
+    [SerializeField]
+    private float rotateSpeed;
+
 
     private float movRot;
 
@@ -37,16 +45,21 @@ public class PlayerController : MonoBehaviour
         cc = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
         state_ = state.STANDING;
+        Cursor.lockState = CursorLockMode.Locked;
 
     }
 
     private void Update()
     {
         handleInput();
+        turn.x += Input.GetAxis("Mouse X") * sensitivity;
+        turn.y += Input.GetAxis("Mouse Y") * sensitivity;
+        cc.transform.localRotation = Quaternion.Euler(0, turn.x, 0);
+       // transform.localRotation = Quaternion.Euler(-turn.x, 0, 0);
 
+        deltaMove = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")) * rotateSpeed * Time.deltaTime;
+        cc.transform.Translate(deltaMove);
     }
-
-
     private void handleInput()
     {
         switch (state_)
