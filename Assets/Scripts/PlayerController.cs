@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private Vector3 moveDirection;
 
+
     state state_;
     enum state
     {
@@ -39,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         handleInput();
 
@@ -62,24 +63,38 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetKey(KeyCode.W))
                 {
                     moveDirection = Vector3.forward * walkingSpeed;
-                    anim.SetInteger("transition", 1);
+                    anim.SetBool("Walk", true);
                 }
                 else if (Input.GetKey(KeyCode.S))
                 {
                     moveDirection = Vector3.forward * walkingSpeed * -1;
-                    anim.SetInteger("transition", 1);
+                    anim.SetBool("Walk", false);
+                    anim.SetBool("BackSide", true);
+                }
+                else if (Input.GetKey(KeyCode.D))
+                {
+                    moveDirection = Vector3.right * walkingSpeed;
+                    anim.SetBool("RightSide", true);
+                }
+                else if (Input.GetKey(KeyCode.A))
+                {
+                    moveDirection = Vector3.right * walkingSpeed * -1;
+                    anim.SetBool("LeftSide", true);
                 }
                 else
                 {
                     moveDirection = Vector3.zero;
-                    anim.SetInteger("transition", 0);
+                    anim.SetBool("Walk", false);
+                    anim.SetBool("RightSide", false);
+                    anim.SetBool("LeftSide", false);
+                    anim.SetBool("BackSide", false);
+                    state_ = state.STANDING;
                 }
-
                 break;
         }
 
-        movRot += Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
-        transform.eulerAngles = new Vector3(0, movRot, 0);
+        //movRot += Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
+        //transform.eulerAngles = new Vector3(0, movRot, 0);
         moveDirection.y -= gravity * Time.deltaTime;
         moveDirection = transform.TransformDirection(moveDirection);
         cc.Move(moveDirection * Time.deltaTime);
