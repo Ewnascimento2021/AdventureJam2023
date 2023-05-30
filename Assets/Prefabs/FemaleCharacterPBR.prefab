@@ -550,9 +550,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394ac223630b436408837f6246c0fb2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkingSpeed: 10
-  gravity: 50
-  rotSpeed: 200
+  walkingSpeed: 8
+  gravity: 1000
+  rotSpeed: 5000
   turn: {x: 0, y: 0}
   sensitivity: 2.5
   deltaMove: {x: 0, y: 0, z: 0}
@@ -574,7 +574,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.69, z: 0}
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!1 &1000086630212172079
 GameObject:
   m_ObjectHideFlags: 0
