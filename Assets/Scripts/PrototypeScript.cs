@@ -72,8 +72,8 @@ public class PrototypeScript : MonoBehaviour
         }
 
 
-        //rotation += Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime;
-        //transform.eulerAngles = new Vector3(0, rotation, 0);
+        rotation += Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime;
+        transform.eulerAngles = new Vector3(0, rotation, 0);
         //moviment = transform.TransformDirection(moviment);
         moviment.y = movDirection.y;
         moviment *= Time.deltaTime;
