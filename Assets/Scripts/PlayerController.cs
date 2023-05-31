@@ -10,16 +10,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float walkingSpeed;
     [SerializeField]
+    private float runningSpeed;
+    [SerializeField]
+    private float jumpingForce;
+    [SerializeField]
     private float rotateSpeed;
     [SerializeField]
     private float gravity;
     [SerializeField]
     private float sensitivity;
-    [SerializeField]
     private Vector2 turn;
-    [SerializeField]
     private Vector3 deltaMove;
-    
+
 
     private CharacterController cc;
     private Animator anim;
@@ -32,7 +34,7 @@ public class PlayerController : MonoBehaviour
         JUMPING,
         ATTACKING,
         DEFENDING,
-        WALKING,
+        WALKINGFRONT,
     }
 
     void Start()
@@ -48,71 +50,75 @@ public class PlayerController : MonoBehaviour
     {
         handleInput();
         turn.x += Input.GetAxis("Mouse X") * sensitivity;
-        turn.y += Input.GetAxis("Mouse Y") * sensitivity;
         cc.transform.localRotation = Quaternion.Euler(0, turn.x, 0);
-
         deltaMove = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")) * rotateSpeed * Time.deltaTime;
         cc.transform.Translate(deltaMove);
-
+        Debug.Log(cc.isGrounded);
     }
     private void handleInput()
     {
-        switch (state_)
+        if (cc.isGrounded)
         {
-            case state.STANDING:
-                if (moveDirection != Vector3.zero)
-                {
-                    state_ = state.WALKING;
-                }
-                break;
+            
+            switch (state_)
+            {
+                case state.STANDING:
+                    if (Input.GetKey(KeyCode.W))
+                    {
+                        state_ = state.WALKINGFRONT;
+                    }
+                    else if (Input.GetKey(KeyCode.S))
+                    {
+                        state_ = state.JUMPING;
+                    }
+                    else if (Input.GetKey(KeyCode.D))
+                    {
+                        state_ = state.JUMPING;
+                    }
+                    else if (Input.GetKey(KeyCode.A))
+                    {
+                        state_ = state.JUMPING;
+                    }
+                    else if (Input.GetKey(KeyCode.Space))
+                    {
+                        state_ = state.JUMPING;
+                    }
 
-            case state.WALKING:
+                    break;
 
-                if (Input.GetKey(KeyCode.W))
-                {
-                    moveDirection = Vector3.forward * walkingSpeed;
-                    anim.SetBool("Walk", true);
-                    anim.SetBool("RightSide", false);
-                    anim.SetBool("LeftSide", false);
-                    anim.SetBool("BackSide", false);
-                }
-                else if (Input.GetKey(KeyCode.S))
-                {
-                    moveDirection = Vector3.forward * walkingSpeed * -1;
-                    anim.SetBool("Walk", false);
-                    anim.SetBool("RightSide", false);
-                    anim.SetBool("LeftSide", false);
-                    anim.SetBool("BackSide", true);
-                }
-                else if (Input.GetKey(KeyCode.D))
-                {
-                    moveDirection = Vector3.right * walkingSpeed;
-                    anim.SetBool("Walk", false);
-                    anim.SetBool("BackSide", false);
-                    anim.SetBool("LeftSide", false);
-                    anim.SetBool("RightSide", true);
-                }
-                else if (Input.GetKey(KeyCode.A))
-                {
-                    moveDirection = Vector3.right * walkingSpeed * -1;
-                    anim.SetBool("Walk", false);
-                    anim.SetBool("BackSide", false);
-                    anim.SetBool("RightSide", false);
-                    anim.SetBool("LeftSide", true);
-                }
-                else
-                {
-                    moveDirection = Vector3.zero;
-                    anim.SetBool("Walk", false);
-                    anim.SetBool("RightSide", false);
-                    anim.SetBool("LeftSide", false);
-                    anim.SetBool("BackSide", false);
-                    state_ = state.STANDING;
-                }
-                break;
+                case state.WALKINGFRONT:
+
+                    if (Input.GetKey(KeyCode.W))
+                    {
+                        moveDirection = Vector3.forward * walkingSpeed;
+                    }
+
+
+                    else
+                    {
+                        moveDirection = Vector3.zero;
+
+                    }
+                    break;
+                case state.JUMPING:
+
+                    moveDirection.y = jumpingForce;
+                    
+
+
+
+
+                    break;
+
+            }
+           
+            moveDirection = transform.TransformDirection(moveDirection);
+            cc.Move(moveDirection * Time.deltaTime);
         }
-        moveDirection.y -= gravity * Time.deltaTime;
-        moveDirection = transform.TransformDirection(moveDirection);
-        cc.Move(moveDirection * Time.deltaTime);
+        else
+        {
+            moveDirection.y -= gravity * Time.deltaTime;
+        }
+        
     }
 }
