@@ -18,13 +18,13 @@ public class PrototypeScript : MonoBehaviour
     private float runningSpeed;
     [SerializeField]
     private Vector3 movDirection;
-  
+
 
     private Animator anim;
     private CharacterController cc;
     private float rotation;
     private float directionY;
-
+    private bool doubleJumping;
 
     state state_;
     enum state
@@ -60,18 +60,30 @@ public class PrototypeScript : MonoBehaviour
         {
             movDirection = Vector3.forward * walkingSpeed;
         }
+        if (Input.GetKey(KeyCode.S))
+        {
+            movDirection = Vector3.forward * walkingSpeed * -1;
+        }
         if (cc.isGrounded)
         {
-            
+            doubleJumping = false;
+
             if (Input.GetButtonDown("Jump"))
             {
                 directionY = jumpingForce;
-                movDirection = Vector3.forward * walkingSpeed;
+                movDirection = Vector3.forward * jumpingForce;
             }
         }
         else if (!cc.isGrounded)
         {
             directionY -= gravityForce * Time.deltaTime;
+
+            if (Input.GetButtonDown("Jump") && doubleJumping == false)
+            {
+                doubleJumping = true;
+                directionY = jumpingForce;
+                movDirection = Vector3.forward * jumpingForce;
+            }
         }
 
 
@@ -81,7 +93,7 @@ public class PrototypeScript : MonoBehaviour
         movDirection.y = directionY;
         movDirection *= Time.deltaTime;
         cc.Move(movDirection);
-        
+
 
     }
 }
