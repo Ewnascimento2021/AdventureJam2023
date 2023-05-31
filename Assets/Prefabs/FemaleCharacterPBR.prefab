@@ -487,7 +487,6 @@ GameObject:
   m_Component:
   - component: {fileID: 496420441430432604}
   - component: {fileID: 101641877579247110}
-  - component: {fileID: 3179825549774092866}
   - component: {fileID: 1439519911}
   m_Layer: 0
   m_Name: FemaleCharacterPBR
@@ -538,25 +537,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3179825549774092866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 984163436944703974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 394ac223630b436408837f6246c0fb2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkingSpeed: 8
-  gravity: 1000
-  rotSpeed: 5000
-  turn: {x: 0, y: 0}
-  sensitivity: 2.5
-  deltaMove: {x: 0, y: 0, z: 0}
-  rotateSpeed: 0.25
 --- !u!143 &1439519911
 CharacterController:
   m_ObjectHideFlags: 0

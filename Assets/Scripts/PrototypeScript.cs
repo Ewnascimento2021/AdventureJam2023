@@ -23,6 +23,7 @@ public class PrototypeScript : MonoBehaviour
     private Animator anim;
     private CharacterController cc;
     private float rotation;
+    private float directionY;
 
 
     state state_;
@@ -54,30 +55,32 @@ public class PrototypeScript : MonoBehaviour
     private void handleInpet()
     {
         Vector3 moviment = Vector3.zero;
-       
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            movDirection = Vector3.forward * walkingSpeed;
+        }
         if (cc.isGrounded)
         {
+            
             if (Input.GetButtonDown("Jump"))
             {
-                movDirection.y = jumpingForce;
-            }
-            if (Input.GetKey(KeyCode.W))
-            {
+                directionY = jumpingForce;
                 movDirection = Vector3.forward * walkingSpeed;
             }
         }
         else if (!cc.isGrounded)
         {
-            movDirection.y -= gravityForce * Time.deltaTime;
+            directionY -= gravityForce * Time.deltaTime;
         }
 
 
         rotation += Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime;
         transform.eulerAngles = new Vector3(0, rotation, 0);
-        //moviment = transform.TransformDirection(moviment);
-        moviment.y = movDirection.y;
-        moviment *= Time.deltaTime;
-        cc.Move(moviment);
+        movDirection = transform.TransformDirection(movDirection);
+        movDirection.y = directionY;
+        movDirection *= Time.deltaTime;
+        cc.Move(movDirection);
         
 
     }
