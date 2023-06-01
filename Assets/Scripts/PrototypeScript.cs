@@ -28,21 +28,21 @@ public class PrototypeScript : MonoBehaviour
     private float directionY;
     private bool doubleJumping;
 
-    state state_;
-    enum state
-    {
-        STANDING,
-        JUMPING,
-        ATTACKING,
-        DEFENDING,
-        WALKINGFRONT,
-    }
+    //state state_;
+    //enum state
+    //{
+    //    STANDING,
+    //    JUMPING,
+    //    ATTACKING,
+    //    DEFENDING,
+    //    WALKINGFRONT,
+    //}
 
     void Start()
     {
         cc = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
-        state_ = state.STANDING;
+      //  state_ = state.STANDING;
     }
 
 
@@ -52,6 +52,7 @@ public class PrototypeScript : MonoBehaviour
     void Update()
     {
         handleInpet();
+
     }
 
     private void handleInpet()
@@ -75,6 +76,7 @@ public class PrototypeScript : MonoBehaviour
         }
         else
         {
+            anim.SetBool("isRunning", false);
             anim.SetBool("isWalking", false);
         }
         if (Input.GetKey(KeyCode.S))
@@ -86,7 +88,7 @@ public class PrototypeScript : MonoBehaviour
         {
             anim.SetBool("BackSide", false);
         }
-
+   
         if (cc.isGrounded)
         {
             doubleJumping = false;
