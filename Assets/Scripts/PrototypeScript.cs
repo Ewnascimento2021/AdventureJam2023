@@ -27,6 +27,7 @@ public class PrototypeScript : MonoBehaviour
     private float rotation;
     private float directionY;
     private bool doubleJumping;
+    public bool acertou;
 
     //state state_;
     //enum state
@@ -52,7 +53,7 @@ public class PrototypeScript : MonoBehaviour
     void Update()
     {
         handleInpet();
-
+       
     }
 
     private void handleInpet()
