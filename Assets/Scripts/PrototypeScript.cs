@@ -46,6 +46,9 @@ public class PrototypeScript : MonoBehaviour
     }
 
 
+
+
+
     void Update()
     {
         handleInpet();
@@ -96,7 +99,7 @@ public class PrototypeScript : MonoBehaviour
                 movDirection = Vector3.forward * jumpingForce;
                 anim.SetBool("isJumping", true);
             }
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButton(0))
             {
                 anim.SetBool("isWalking", false);
                 anim.SetBool("isAttack1", true);
@@ -106,6 +109,17 @@ public class PrototypeScript : MonoBehaviour
             {
                 anim.SetBool("isAttack1", false);
             }
+            if (Input.GetMouseButton(1))
+            {
+                anim.SetBool("isWalking", false);
+                anim.SetBool("isDefend", true);
+                movDirection = Vector3.zero;
+            }
+            else
+            {
+                anim.SetBool("isDefend", false);
+            }
+
 
         }
         else if (!cc.isGrounded)
@@ -122,9 +136,6 @@ public class PrototypeScript : MonoBehaviour
                 movDirection = Vector3.forward * jumpingForce;
             }
         }
-        
-
-
         rotation += Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime;
         transform.eulerAngles = new Vector3(0, rotation, 0);
         movDirection = transform.TransformDirection(movDirection);
