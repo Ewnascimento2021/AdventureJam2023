@@ -130,26 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1439519911, guid: 18cc34376a618dc4b8a5db4d38580f96, type: 3}
-      propertyPath: m_Center.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1439519911, guid: 18cc34376a618dc4b8a5db4d38580f96, type: 3}
-      propertyPath: m_SkinWidth
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1439519911, guid: 18cc34376a618dc4b8a5db4d38580f96, type: 3}
-      propertyPath: m_SlopeLimit
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 1439519911, guid: 18cc34376a618dc4b8a5db4d38580f96, type: 3}
-      propertyPath: m_StepOffset
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1439519911, guid: 18cc34376a618dc4b8a5db4d38580f96, type: 3}
-      propertyPath: m_MinMoveDistance
-      value: 0.0001
-      objectReference: {fileID: 0}
     - target: {fileID: 496420441430432604, guid: 18cc34376a618dc4b8a5db4d38580f96, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -198,35 +178,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: FemaleCharacterPBR
       objectReference: {fileID: 0}
-    - target: {fileID: 6603000538198191481, guid: 18cc34376a618dc4b8a5db4d38580f96, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.776
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18cc34376a618dc4b8a5db4d38580f96, type: 3}
---- !u!1 &591308986 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 984163436944703974, guid: 18cc34376a618dc4b8a5db4d38580f96, type: 3}
-  m_PrefabInstance: {fileID: 374271994}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &591308987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 591308986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7aff06be79373b845b32edbe3dad4d08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gravityForce: 30
-  jumpingForce: 15
-  rotationSpeed: 200
-  walkingSpeed: 4
-  runningSpeed: 10
-  movDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

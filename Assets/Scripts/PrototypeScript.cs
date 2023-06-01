@@ -17,6 +17,8 @@ public class PrototypeScript : MonoBehaviour
     [SerializeField]
     private float runningSpeed;
     [SerializeField]
+    private float timerSpeedAttack;
+    [SerializeField]
     private Vector3 movDirection;
 
 
@@ -47,9 +49,6 @@ public class PrototypeScript : MonoBehaviour
     void Update()
     {
         handleInpet();
-
-
-
     }
 
     private void handleInpet()
@@ -59,32 +58,71 @@ public class PrototypeScript : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             movDirection = Vector3.forward * walkingSpeed;
+            anim.SetBool("isWalking", true);
+
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                anim.SetBool("isRunning", true);
+                movDirection = Vector3.forward * runningSpeed;
+            }
+            else
+            {
+                anim.SetBool("isRunning", false);
+            }
+        }
+        else
+        {
+            anim.SetBool("isWalking", false);
         }
         if (Input.GetKey(KeyCode.S))
         {
             movDirection = Vector3.forward * walkingSpeed * -1;
+            anim.SetBool("BackSide", true);
         }
+        else
+        {
+            anim.SetBool("BackSide", false);
+        }
+
         if (cc.isGrounded)
         {
             doubleJumping = false;
+            anim.SetBool("isJumping", false);
+            anim.SetBool("isDoubleJump", false);
 
             if (Input.GetButtonDown("Jump"))
             {
                 directionY = jumpingForce;
                 movDirection = Vector3.forward * jumpingForce;
+                anim.SetBool("isJumping", true);
             }
+            if (Input.GetMouseButtonDown(0))
+            {
+                anim.SetBool("isWalking", false);
+                anim.SetBool("isAttack1", true);
+                movDirection = Vector3.zero;
+            }
+            else
+            {
+                anim.SetBool("isAttack1", false);
+            }
+
         }
         else if (!cc.isGrounded)
         {
             directionY -= gravityForce * Time.deltaTime;
 
+            anim.SetBool("isWalking", false);
+
             if (Input.GetButtonDown("Jump") && doubleJumping == false)
             {
                 doubleJumping = true;
                 directionY = jumpingForce;
+                anim.SetBool("isDoubleJump", true);
                 movDirection = Vector3.forward * jumpingForce;
             }
         }
+        
 
 
         rotation += Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime;

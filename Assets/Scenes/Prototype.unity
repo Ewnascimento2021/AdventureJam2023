@@ -523,7 +523,7 @@ MonoBehaviour:
   gravityForce: 30
   jumpingForce: 15
   rotationSpeed: 200
-  walkingSpeed: 4
+  walkingSpeed: 8
   runningSpeed: 10
   movDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &1863332244
