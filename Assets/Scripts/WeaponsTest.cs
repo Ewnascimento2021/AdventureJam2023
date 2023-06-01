@@ -10,7 +10,7 @@ public class WeaponsTest : MonoBehaviour
     {
         if (other.tag == "Test")
         {
-            Debug.Log("Ok");
+           // Debug.Log("Ok");
         }
     }
 
