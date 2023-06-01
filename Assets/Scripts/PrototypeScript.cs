@@ -124,7 +124,7 @@ public class PrototypeScript : MonoBehaviour
         }
         else if (!cc.isGrounded)
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 anim.SetBool("isJumping", false);
                 anim.SetBool("isAttack2", true);
