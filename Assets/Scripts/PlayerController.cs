@@ -18,9 +18,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float runningSpeed;
     [SerializeField]
-    private float timerSpeedAttack;
-    [SerializeField]
     private Vector3 movDirection;
+
 
 
     private Animator anim;
@@ -29,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private float directionY;
     private bool doubleJumping;
     public bool acertou;
+
 
     //state state_;
     //enum state
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         handleInpet();
-
+       
     }
 
     private void handleInpet()
@@ -100,6 +100,7 @@ public class PlayerController : MonoBehaviour
                 movDirection = Vector3.forward * jumpingForce;
                 anim.SetBool("isJumping", true);
             }
+           
             if (Input.GetMouseButton(0))
             {
                 anim.SetBool("isWalking", false);

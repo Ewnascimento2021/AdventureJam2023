@@ -22,11 +22,9 @@ public class ReferenceController : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(triggerAttack);
-
         if (isAttack && triggerAttack)
         {
-            Debug.Log("AI!");
+            //Debug.Log("AI!");
         }
     }
 
