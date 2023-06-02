@@ -10,7 +10,14 @@ public class WeaponsTest : MonoBehaviour
     {
         if (other.tag == "Test")
         {
-           // Debug.Log("Ok");
+            ReferenceController.Instance.triggerAttack = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Test")
+        {
+            ReferenceController.Instance.triggerAttack = false;
         }
     }
 
