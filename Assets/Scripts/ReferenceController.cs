@@ -18,14 +18,20 @@ public class ReferenceController : MonoBehaviour
 
     public bool isAttack;
     public bool triggerAttack;
-    public bool damageAttack;
+    public int damageAttack = 1;
+    public bool take;
+    
 
 
     private void Update()
     {
         if (isAttack && triggerAttack)
         {
-            //Debug.Log("AI!");
+            take = true;
+        }
+        else
+        {
+            take = false;
         }
     }
 

@@ -21,24 +21,12 @@ public class PlayerController : MonoBehaviour
     private Vector3 movDirection;
 
 
-    
+
     private Animator anim;
     private CharacterController cc;
     private float rotation;
     private float directionY;
     private bool doubleJumping;
-    public bool acertou;
-
-
-    //state state_;
-    //enum state
-    //{
-    //    STANDING,
-    //    JUMPING,
-    //    ATTACKING,
-    //    DEFENDING,
-    //    WALKINGFRONT,
-    //}
 
     void Start()
     {
@@ -153,7 +141,5 @@ public class PlayerController : MonoBehaviour
         movDirection.y = directionY;
         movDirection *= Time.deltaTime;
         cc.Move(movDirection);
-
-
     }
 }

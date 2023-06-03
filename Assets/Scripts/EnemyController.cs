@@ -14,6 +14,7 @@ public class EnemyController : MonoBehaviour
     private int maxHealth;
     [SerializeField]
     private float enemySpeed;
+    private bool swordToutch;
 
     private int currentHealth;
    
@@ -26,17 +27,24 @@ public class EnemyController : MonoBehaviour
         animator = GetComponent<Animator>();
         player = GameObject.Find("Player").transform;
         currentHealth = maxHealth;
-        animator.SetBool("Walking", true);
+        animator.SetBool("isWalking", true);
     }
     private void Update()
     {
         enemyNMA.SetDestination(player.position);
-    }
-    private void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
 
-        // play hurt animation;
+        if (swordToutch && ReferenceController.Instance.take)
+        {
+            TakeDamage();
+        }
+
+        Debug.Log(currentHealth);
+    }
+    private void TakeDamage()
+    {
+        currentHealth -= ReferenceController.Instance.damageAttack;
+
+       animator.SetBool("isHurt", true);
 
         if (currentHealth <=0)
         {
@@ -44,10 +52,29 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    
     private void Die()
     {
-        // die Animation;
+        animator.SetBool("isDead", true);
 
         // exclude this Enemy;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Sword")
+        {
+            swordToutch = true;
+            ReferenceController.Instance.triggerAttack = true;
+
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Sword")
+        {
+            swordToutch = true;
+            ReferenceController.Instance.triggerAttack = false;
+        }
     }
 }
