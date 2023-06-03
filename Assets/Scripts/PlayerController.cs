@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 movDirection;
 
 
-
+    
     private Animator anim;
     private CharacterController cc;
     private float rotation;

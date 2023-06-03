@@ -20,6 +20,7 @@ public class ReferenceController : MonoBehaviour
     public bool triggerAttack;
     public bool damageAttack;
 
+
     private void Update()
     {
         if (isAttack && triggerAttack)

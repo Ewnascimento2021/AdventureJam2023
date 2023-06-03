@@ -1,27 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
+    private Rigidbody enemyRb;
+    private Animator animator;
+    private Transform player;
+    private NavMeshAgent enemyNMA;
+
     [SerializeField]
     private int maxHealth;
+    [SerializeField]
+    private float enemySpeed;
 
     private int currentHealth;
-    public Animator animator;
+   
+
     
-    // Start is called before the first frame update
     void Start()
     {
-        currentHealth = maxHealth;
+        enemyRb = GetComponent<Rigidbody>();
+        enemyNMA = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+        player = GameObject.Find("Player").transform;
+        currentHealth = maxHealth;   
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
-    } 
-
+        enemyNMA.SetDestination(player.position);
+    }
     private void TakeDamage(int damage)
     {
         currentHealth -= damage;
