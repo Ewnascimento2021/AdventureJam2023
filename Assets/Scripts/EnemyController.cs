@@ -37,12 +37,10 @@ public class EnemyController : MonoBehaviour
         {
             TakeDamage();
         }
-
-        Debug.Log(currentHealth);
     }
     private void TakeDamage()
     {
-        currentHealth -= ReferenceController.Instance.damageAttack;
+        //currentHealth -= ReferenceController.Instance.damageAttack;
 
        animator.SetBool("isHurt", true);
 
