@@ -25,7 +25,8 @@ public class EnemyController : MonoBehaviour
         enemyNMA = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         player = GameObject.Find("Player").transform;
-        currentHealth = maxHealth;   
+        currentHealth = maxHealth;
+        animator.SetBool("Walking", true);
     }
     private void Update()
     {

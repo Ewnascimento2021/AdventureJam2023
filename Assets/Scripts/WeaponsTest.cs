@@ -8,14 +8,14 @@ public class WeaponsTest : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Test")
+        if (other.tag == "Enemy")
         {
             ReferenceController.Instance.triggerAttack = true;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Test")
+        if (other.tag == "Enemy")
         {
             ReferenceController.Instance.triggerAttack = false;
         }
