@@ -502,7 +502,6 @@ MonoBehaviour:
   walkingSpeed: 4
   runningSpeed: 12
   movDirection: {x: 0, y: 0, z: 0}
-  acertou: 0
 --- !u!1 &1000086630212172079
 GameObject:
   m_ObjectHideFlags: 0
@@ -2737,6 +2736,10 @@ PrefabInstance:
     - target: {fileID: 3832907126045494399, guid: 3617e4093ca8d5145986d37c89cfd692, type: 3}
       propertyPath: m_Name
       value: OHS06
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832907126045494399, guid: 3617e4093ca8d5145986d37c89cfd692, type: 3}
+      propertyPath: m_TagString
+      value: Sword
       objectReference: {fileID: 0}
     - target: {fileID: 4502165957148481221, guid: 3617e4093ca8d5145986d37c89cfd692, type: 3}
       propertyPath: m_RootOrder
