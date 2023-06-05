@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Test
   - Enemy
-  - Sword
   layers:
   - Default
   - TransparentFX
