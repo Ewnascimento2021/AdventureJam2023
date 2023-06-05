@@ -20,8 +20,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Vector3 movDirection;
 
-
-
     private Animator anim;
     private CharacterController cc;
     private float rotation;
@@ -38,7 +36,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         handleInpet();
-       
     }
 
     private void handleInpet()
@@ -85,11 +82,10 @@ public class PlayerController : MonoBehaviour
             if (Input.GetButtonDown("Jump"))
             {
                 directionY = jumpingForce;
-                movDirection = Vector3.forward * jumpingForce;
                 anim.SetBool("isJumping", true);
             }
            
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton (0))
             {
                 anim.SetBool("isWalking", false);
                 anim.SetBool("isAttack1", true);
@@ -131,7 +127,6 @@ public class PlayerController : MonoBehaviour
                 doubleJumping = true;
                 directionY = jumpingForce;
                 anim.SetBool("isDoubleJump", true);
-                movDirection = Vector3.forward * jumpingForce;
             }
 
         }

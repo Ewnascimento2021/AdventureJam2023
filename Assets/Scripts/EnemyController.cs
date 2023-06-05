@@ -5,17 +5,14 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
+    [SerializeField]
+    private int maxHealth;
     private Rigidbody enemyRb;
     private Animator animator;
     private Transform player;
     private NavMeshAgent enemyNMA;
 
-    [SerializeField]
-    private int maxHealth;
-    [SerializeField]
-    private float enemySpeed;
     private bool swordToutch;
-
     private int currentHealth;
    
 
@@ -40,21 +37,21 @@ public class EnemyController : MonoBehaviour
     }
     private void TakeDamage()
     {
-        //currentHealth -= ReferenceController.Instance.damageAttack;
+        currentHealth -= ReferenceController.Instance.damageAttack;
 
        animator.SetBool("isHurt", true);
 
-        if (currentHealth <=0)
+        if (currentHealth <= 0)
         {
             Die();
         }
+       
     }
 
     
     private void Die()
     {
         animator.SetBool("isDead", true);
-
         // exclude this Enemy;
     }
 
@@ -71,7 +68,7 @@ public class EnemyController : MonoBehaviour
     {
         if (other.tag == "Sword")
         {
-            swordToutch = true;
+            swordToutch = false;
             ReferenceController.Instance.triggerAttack = false;
         }
     }
