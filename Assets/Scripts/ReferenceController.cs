@@ -28,6 +28,7 @@ public class ReferenceController : MonoBehaviour
         if (isAttack && triggerAttack)
         {
             take = true;
+            Debug.Log(take);
         }
         else
         {

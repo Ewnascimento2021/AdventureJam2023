@@ -84,8 +84,8 @@ public class PlayerController : MonoBehaviour
                 directionY = jumpingForce;
                 anim.SetBool("isJumping", true);
             }
-           
-            if (Input.GetMouseButton (0))
+
+            if (Input.GetMouseButton(0))
             {
                 anim.SetBool("isWalking", false);
                 anim.SetBool("isAttack1", true);
