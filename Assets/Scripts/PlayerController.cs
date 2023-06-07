@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private bool doubleJumping;
     private bool isHurt;
     private bool isDead;
+    private bool isDefend;
 
 
 
@@ -124,11 +125,14 @@ public class PlayerController : MonoBehaviour
                 {
                     anim.SetBool("isWalking", false);
                     anim.SetBool("isDefend", true);
+                    isDefend = true;
+
                     movDirection = Vector3.zero;
                 }
                 else
                 {
                     anim.SetBool("isDefend", false);
+                    isDefend = false;
                 }
             }
             else if (!cc.isGrounded)
@@ -163,15 +167,22 @@ public class PlayerController : MonoBehaviour
     {
         if (other.tag == "Trap")
         {
-            isHurt = true;
-
-            myLife--;
+            if (isDefend)
+            {
+                anim.SetBool("isDefendHit", true);
+            }
+            else
+            {
+                isHurt = true;
+                myLife--;
+            }
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Trap")
         {
+            anim.SetBool("isDefendHit", false);
             isHurt = false;
         }
     }
