@@ -21,6 +21,7 @@ public class ReferenceController : MonoBehaviour
     public int damageAttack = 1;
     public bool take;
     public bool isDead;
+    public bool startCanhao;
     
 
 

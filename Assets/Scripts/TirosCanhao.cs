@@ -16,10 +16,13 @@ public class TirosCanhao : MonoBehaviour
     private float nextAttackTime = 0f;
     void Update()
     {
-        if (Time.time >= nextAttackTime && !ReferenceController.Instance.isDead) 
+        if (ReferenceController.Instance.startCanhao)
         {
-            Attack();
-            nextAttackTime = Time.time +1f / attackRate;
+            if (Time.time >= nextAttackTime && !ReferenceController.Instance.isDead)
+            {
+                Attack();
+                nextAttackTime = Time.time + 1f / attackRate;
+            }
         }
     }
     private void Attack()
