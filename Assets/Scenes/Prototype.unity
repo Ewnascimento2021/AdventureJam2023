@@ -525,7 +525,9 @@ MonoBehaviour:
   rotationSpeed: 200
   walkingSpeed: 8
   runningSpeed: 10
+  timerSpeedAttack: 0
   movDirection: {x: 0, y: 0, z: 0}
+  acertou: 0
 --- !u!1 &1863332244
 GameObject:
   m_ObjectHideFlags: 0
