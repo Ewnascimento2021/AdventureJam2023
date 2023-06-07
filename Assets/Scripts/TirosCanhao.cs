@@ -10,13 +10,21 @@ public class TirosCanhao : MonoBehaviour
     private Transform barrel;
     [SerializeField]
     private float force;
+    [SerializeField]
+    private float attackRate;
 
+    private float nextAttackTime = 0f;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Time.time >= nextAttackTime && !ReferenceController.Instance.isDead) 
         {
-            GameObject bullet = Instantiate(balaCanhao, barrel.position, barrel.rotation);
-            bullet.GetComponent<Rigidbody>().velocity = barrel.right * -1 * force  * Time.deltaTime;
+            Attack();
+            nextAttackTime = Time.time +1f / attackRate;
         }
+    }
+    private void Attack()
+    {
+        GameObject bullet = Instantiate(balaCanhao, barrel.position, barrel.rotation);
+        bullet.GetComponent<Rigidbody>().velocity = barrel.right * -1 * force * Time.deltaTime;
     }
 }

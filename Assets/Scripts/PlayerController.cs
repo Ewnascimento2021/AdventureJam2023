@@ -58,6 +58,7 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("isDead", true);
             movDirection = Vector3.zero;
             isDead = true;
+            ReferenceController.Instance.isDead = true;
         }
     }
 

@@ -20,6 +20,7 @@ public class ReferenceController : MonoBehaviour
     public bool triggerAttack;
     public int damageAttack = 1;
     public bool take;
+    public bool isDead;
     
 
 
