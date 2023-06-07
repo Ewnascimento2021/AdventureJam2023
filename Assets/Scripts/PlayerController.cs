@@ -37,7 +37,6 @@ public class PlayerController : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
-        //  state_ = state.STANDING;
     }
 
     void Update()

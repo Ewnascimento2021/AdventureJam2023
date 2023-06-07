@@ -11,7 +11,6 @@ public class WeaponsTest : MonoBehaviour
         if (other.tag == "Enemy")
         {
             ReferenceController.Instance.triggerAttack = true;
-            Debug.Log(ReferenceController.Instance.triggerAttack);
         }
     }
     private void OnTriggerExit(Collider other)

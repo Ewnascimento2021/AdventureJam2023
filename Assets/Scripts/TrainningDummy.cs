@@ -37,8 +37,6 @@ public class TrainningDummy : MonoBehaviour
         {
             swordToutch = true;
             ReferenceController.Instance.triggerAttack = true;
-
-            Debug.Log(swordToutch);
         }
     }
     private void OnTriggerExit(Collider other)
