@@ -34,10 +34,8 @@ public class ReferenceController : MonoBehaviour
     // Portal collider para iniciar o ataque dos canhoes
     public bool startCanhao;
 
-
     // Contados de coletaveis
     public int collectibles;
-
 
     private void Update()
     {

@@ -9,22 +9,32 @@ public class Mensagem : MonoBehaviour
     public TextMeshProUGUI texto;
     private GameObject jogador;
     [Range(1f, 10f)] public float distancia;
+    private int falaAtual;
 
     private void Start()
     {
-        texto.enabled = false;
         jogador = GameObject.FindWithTag("Player");
     }
 
     private void Update()
     {
-        if (Vector3.Distance(transform.position, jogador.transform.position) < distancia)
+        switch (falaAtual)
         {
-            texto.enabled = true;
-        }
-        else
-        {
-            texto.enabled = false;
+            case 0:
+                if (Vector3.Distance(transform.position, jogador.transform.position) < distancia)
+                {
+                    texto.text = "Pressione (T) para conversar com Half";
+                    if (Input.GetKeyDown(KeyCode.T))
+                    {
+                        falaAtual = 1;
+                    }
+                }
+                break;
+            case 1:
+                texto.text = "Olá menina, seja bem vinda ao meu castelo, aqui eu cresci e aprendi tudo sobre magia.";
+
+                break;
+
         }
     }
 

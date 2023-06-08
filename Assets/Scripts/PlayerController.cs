@@ -7,6 +7,16 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
+    static PlayerController instance;
+    public static PlayerController Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<PlayerController>();
+            return instance;
+        }
+    }
     [SerializeField]
     private float gravityForce;
     [SerializeField]
@@ -18,7 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float runningSpeed;
     [SerializeField]
-    private int myLife;
+    public int myLife;
     [SerializeField]
     private Vector3 movDirection;
 

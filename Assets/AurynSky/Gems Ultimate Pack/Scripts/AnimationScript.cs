@@ -3,6 +3,8 @@ using System.Collections;
 
 public class AnimationScript : MonoBehaviour
 {
+    [SerializeField]
+    private int myType;
 
     public bool isAnimated = false;
 
@@ -88,7 +90,15 @@ public class AnimationScript : MonoBehaviour
         if (other.tag == "Player")
         {
             Destroy(gameObject);
-            ReferenceController.Instance.collectibles++;
+            if (myType == 1)
+            {
+                ReferenceController.Instance.collectibles++;
+            }
+            if (myType == 2 && PlayerController.Instance.myLife < 3)
+            {
+                PlayerController.Instance.myLife++;
+            }
+            
         }
     }
 }

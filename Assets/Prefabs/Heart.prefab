@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff967b7ed48f2441bcf509edf6b889a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myType: 2
   isAnimated: 1
   isRotating: 1
   isFloating: 0
@@ -119,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff967b7ed48f2441bcf509edf6b889a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myType: 0
   isAnimated: 0
   isRotating: 0
   isFloating: 0
@@ -129,5 +131,5 @@ MonoBehaviour:
   floatRate: 0
   startScale: {x: 0, y: 0, z: 0}
   endScale: {x: 0, y: 0, z: 0}
-  scaleSpeed: 0
+  scaleSpeed: 1
   scaleRate: 0
