@@ -31,20 +31,15 @@ public class AnimationScript : MonoBehaviour
     {
 
     }
-
     // Update is called once per frame
     void Update()
     {
-
-
-
         if (isAnimated)
         {
             if (isRotating)
             {
                 transform.Rotate(rotationAngle * rotationSpeed * Time.deltaTime);
             }
-
             if (isFloating)
             {
                 floatTimer += Time.deltaTime;
@@ -65,7 +60,6 @@ public class AnimationScript : MonoBehaviour
                     floatSpeed = +floatSpeed;
                 }
             }
-
             if (isScaling)
             {
                 scaleTimer += Time.deltaTime;
