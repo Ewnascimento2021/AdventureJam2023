@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,68 +8,57 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField]
     private int maxHealth;
+    [SerializeField]
+    private float attackRate;
+
+    [Range(1f, 10f)] public float distancia;
+
     private Rigidbody enemyRb;
+
     private Animator animator;
-    private Transform player;
-    private NavMeshAgent enemyNMA;
+    private GameObject jogador;
 
-    private bool swordToutch;
-    private int currentHealth;
-   
+    private bool acordei;
+    private float nextAttackTime = 0f;
 
-    
     void Start()
     {
-        enemyRb = GetComponent<Rigidbody>();
-        enemyNMA = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        player = GameObject.Find("Player").transform;
-        currentHealth = maxHealth;
-        animator.SetBool("isWalking", true);
+        jogador = GameObject.FindWithTag("Player");
+        enemyRb = GetComponent<Rigidbody>();
     }
     private void Update()
     {
-        enemyNMA.SetDestination(player.position);
-
-        if (swordToutch && ReferenceController.Instance.take)
+        if (Vector3.Distance(transform.position, jogador.transform.position) < distancia)
         {
-            TakeDamage();
+            acordei = true;
+            animator.SetBool("Acordei", true);
+        }
+
+        if (acordei)
+        {
+            if (Time.time >= nextAttackTime)
+            {
+                Attack();
+                nextAttackTime = Time.time + 1f / attackRate;
+                //animator.SetBool("Attack", false);
+                //animator.SetBool("Acordei", true);
+            }
         }
     }
-    private void TakeDamage()
-    {
-        currentHealth -= ReferenceController.Instance.damageAttack;
-
-       animator.SetBool("isHurt", true);
-
-        if (currentHealth <= 0)
+        private void Attack()
         {
-            Die();
+            animator.SetBool("Acordei", false);
+            animator.SetBool("Attack", true);
+        }
+
+
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.tag == "Sword")
+            {
+                ReferenceController.Instance.triggerAttack = false;
+            }
         }
     }
-
-    
-    private void Die()
-    {
-        animator.SetBool("isDead", true);
-        // exclude this Enemy;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Sword")
-        {
-            swordToutch = true;
-            ReferenceController.Instance.triggerAttack = true;
-
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Sword")
-        {
-            swordToutch = false;
-            ReferenceController.Instance.triggerAttack = false;
-        }
-    }
-}
