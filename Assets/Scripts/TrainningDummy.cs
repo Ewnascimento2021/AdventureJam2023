@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class TrainningDummy : MonoBehaviour
 {
     [SerializeField]
     private int maxHealth;
+    [SerializeField]
+    private Transform collect;
+    [SerializeField]
+    private GameObject piece;
+    [SerializeField]
+    private float timeDelet;
 
     private Rigidbody enemyRb;
     private Animator animator;
@@ -29,6 +36,8 @@ public class TrainningDummy : MonoBehaviour
     private void TakeDamage()
     {
         animator.SetBool("isHurt", true);
+        GameObject d20 = Instantiate(piece, collect.position, collect.rotation);
+        gameObject.GetComponent<Collider>().enabled = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -47,6 +56,5 @@ public class TrainningDummy : MonoBehaviour
             ReferenceController.Instance.triggerAttack = false;
         }
     }
-
-
 }
+

@@ -16,13 +16,27 @@ public class ReferenceController : MonoBehaviour
         }
     }
 
+    // Player esta atacando
     public bool isAttack;
+
+    // Espada esta tocando o Enemy
     public bool triggerAttack;
+
+    // Dado atual de Ataque
     public int damageAttack = 1;
+
+    // Confirmado o dano ao Enemy
     public bool take;
+
+    // Confirmação do status de vivo ou morto do Player
     public bool isDead;
+
+    // Portal collider para iniciar o ataque dos canhoes
     public bool startCanhao;
-    
+
+
+    // Contados de coletaveis
+    public int collectibles;
 
 
     private void Update()
