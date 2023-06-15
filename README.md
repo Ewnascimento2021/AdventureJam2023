@@ -1,4 +1,9 @@
 ## AdventureJam2023
+For the past two weeks I've been participating in AdventureJam, hosted by Itch.io.
+The theme was Adventure, in this 3D project, I explored Unity Animator, used CharacterController, and created combat.
+
+
+
 YouTube:
 
 
